@@ -1,6 +1,6 @@
 #Secure alignment of coordinate systems by using quantum correlation
 
-An implementation of Secure alignment of [coordinate systems by using quantum
+An implementation of [Secure alignment of coordinate systems by using quantum
 correlation](https://arxiv.org/abs/1704.00833).
 
 ##Using entangled states  to estimate the angle between two directions

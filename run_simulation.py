@@ -1,4 +1,4 @@
-from application import AliceProgram, BobProgram
+from application import AliceProgram2D, BobProgram2D
 
 from squidasm.run.stack.config import StackNetworkConfig
 from squidasm.run.stack.run import run
@@ -17,8 +17,8 @@ LogManager.log_to_file("info.log")
 
 n_epr_pairs = 2
 
-alice_program = AliceProgram(0,n_epr_pairs)
-bob_program = BobProgram(0, n_epr_pairs)
+alice_program = AliceProgram2D(0,n_epr_pairs)
+bob_program = BobProgram2D(0, n_epr_pairs)
 
 alice_results, bob_results = run(config=cfg, programs={"Alice": alice_program, "Bob": bob_program}, num_times=1)
 

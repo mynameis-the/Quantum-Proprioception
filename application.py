@@ -14,12 +14,12 @@ class Messages(Enum):
     ALL_INITIALISED = auto()
 
 
-class AliceProgram(Program):
+class AliceProgram2D(Program):
     PEER_NAME = "Bob"
 
-    def __init__(self, direction: float, n_epr_pairs: int):
-        self.direction = direction
-        self.n_epr_pairs = n_epr_pairs
+    def __init__(self, angle: float, num_epr: int):
+        self.angle = angle
+        self.num_epr = num_epr
 
     @property
     def meta(self) -> ProgramMeta:
@@ -64,7 +64,7 @@ class AliceProgram(Program):
         return {}
 
 
-class BobProgram(Program):
+class BobProgram2D(Program):
     PEER_NAME = "Alice"
 
     def __init__(self, direction: float, n_epr_pairs: int):
@@ -77,7 +77,7 @@ class BobProgram(Program):
             name="bob_program",
             csockets=[self.PEER_NAME],
             epr_sockets=[self.PEER_NAME],
-            max_qubits=2,
+            max_qubits=self.n_epr_pairs,
         )
 
     def run(self, context: ProgramContext):
@@ -114,8 +114,6 @@ class BobProgram(Program):
         for i in range(N):
             if b[i] != a[i]:
                 Nd += 1
-
-        # eq (4)
         qN = 2*Nd/N - 1
 
         # eq (21)
