@@ -17,9 +17,9 @@ class Messages(Enum):
 class AliceProgram2D(Program):
     PEER_NAME = "Bob"
 
-    def __init__(self, angle: float, num_epr: int):
+    def __init__(self, angle: float, n_epr_pairs: int):
         self.angle = angle
-        self.num_epr = num_epr
+        self.n_epr_pairs = n_epr_pairs
 
     @property
     def meta(self) -> ProgramMeta:
