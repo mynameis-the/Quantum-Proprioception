@@ -48,8 +48,9 @@ class AliceProgram2D(Program):
             message = yield from csocket.recv()
             assert message == Messages.STATE_CREATED
             # measure
-            a.append(q.measure())
+            m = q.measure()
             yield from connection.flush()
+            a.append(m)
 
         logger.info(f"Measured qubits: {a}")
 
