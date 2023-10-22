@@ -2,7 +2,7 @@
 
 Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three-dimensional space.
 
-<i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers to the sense we have of the orientation of our body parts.</i>
+<i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" comes from the sense we have of the orientation of our body parts (also known as kinaesthesia).</i>
 
 ## The Big Idea
 
@@ -116,10 +116,10 @@ orientation in three dimensions.
 ## Inputs
 
 The accuracy of Quantum Proprioception depends on the number $N$ of EPR pairs that Alice and Bob
-share. In the editor, you can choose this number. With $N=2$, the theoretical fidelity is about $0.86$
+share. In an editor, you can choose this number. With $N=2$, the theoretical fidelity is about $0.86$
 and with $N=10$ it is about $0.96$<sup>[1](#References)</sup>.
-In the real world, the angle between Alice and Bob’s apparatus is unknown. That’s what the protocol
-determines. But in the simulation, you must enter this angle (see How to run).
+In the real world, the angle between Alice and Bob’s apparatus is unknown (because it is what the protocol
+determines), but in this simulation, you must specify the angles (see [How to Run](#How-to-Run)).
 
 ## Results
 
