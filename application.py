@@ -27,7 +27,7 @@ class AliceProgram2D(Program):
             name="alice_program",
             csockets=[self.PEER_NAME],
             epr_sockets=[self.PEER_NAME],
-            max_qubits=2,
+            max_qubits=1,
         )
 
     def run(self, context: ProgramContext):
@@ -37,7 +37,6 @@ class AliceProgram2D(Program):
 
         logger = LogManager.get_stack_logger("AliceProgram")
 
-        a = []
         for i in range(self.n_epr_pairs):
             q = epr_socket.create_keep(1)[0]
             # turn |00> + |11> into |01> - |10>
@@ -50,12 +49,7 @@ class AliceProgram2D(Program):
             # measure
             m = q.measure()
             yield from connection.flush()
-            a.append(m)
-
-        logger.info(f"Measured qubits: {a}")
-
-        csocket.send(a)
-        logger.info(f"Sent measurements: {a}")
+            csocket.send(str(m.value))
 
         logger.info("Finished")
         return {}
@@ -64,9 +58,10 @@ class AliceProgram2D(Program):
 class BobProgram2D(Program):
     PEER_NAME = "Alice"
 
-    def __init__(self, direction: float, n_epr_pairs: int):
+    def __init__(self, direction: float, n_epr_pairs: int, finite_estimation: bool = False):
         self.direction = direction
         self.n_epr_pairs = n_epr_pairs
+        self.finite_estimation = finite_estimation
 
     @property
     def meta(self) -> ProgramMeta:
@@ -74,7 +69,7 @@ class BobProgram2D(Program):
             name="bob_program",
             csockets=[self.PEER_NAME],
             epr_sockets=[self.PEER_NAME],
-            max_qubits=self.n_epr_pairs,
+            max_qubits=1,
         )
 
     def run(self, context: ProgramContext):
@@ -84,39 +79,46 @@ class BobProgram2D(Program):
 
         logger = LogManager.get_stack_logger("BobProgram")
 
+        a = []
         b = []
         for i in range(self.n_epr_pairs):
             q = epr_socket.recv_keep(1)[0]
             # turn |00> + |11> into |01> - |10>
             q.Z()
             q.X()
+            # simulate angle
+            q.rot_X()
             # wait for confirmation
             csocket.send(Messages.STATE_CREATED)
             message = yield from csocket.recv()
             assert message == Messages.STATE_CREATED
             # measure
-            b.append(q.measure())
+            m = q.measure()
             yield from connection.flush()
+            am = yield from csocket.recv()
+            a.append(int(am))
+            b.append(m.value)
 
-        logger.info(f"Measured qubits: {b}")
-
-        # receive measurements from alice
-        a = yield from csocket.recv()
         logger.info(f"Received measurements: {a}")
+        logger.info(f"Measured qubits: {b}")
 
         N = self.n_epr_pairs
 
+        print(a,b)
         # eq (4)
         Nd = 0
         for i in range(N):
             if b[i] != a[i]:
                 Nd += 1
-        qN = 2*Nd/N - 1
-
-        # eq (21)
-        theta = acos(N/(N+2)*qN)
+        qN = 2 * Nd / N - 1
+        if self.finite_estimation:
+            # eq (21)
+            theta = acos(N/(N+2)*qN)
+        else:
+            # eq (8)
+            theta = acos(qN)
 
         logger.info(f"Calculated difference in angles: {theta=}")
 
         logger.info("Finished")
-        return {"theta": theta}
+        return {"correlation": qN, "theta": theta}

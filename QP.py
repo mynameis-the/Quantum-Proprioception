@@ -11,12 +11,14 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('angle1', default=0)
 parser.add_argument('angle2', default=0)
-parser.add_argument('-N', '--num_epr')
+parser.add_argument('-N', '--num_epr', default=100)
 parser.add_argument('-l', '--logfile', default='info.log')
 parser.add_argument('-v', '--verbose',
-                    action='store_true')
+                    action='store_true', default=False)
 parser.add_argument('-n', '--noise',
-                    action='store_true')
+                    action='store_true', default=False)
+parser.add_argument('-f', '--finite-estimation',
+                    action='store_true', default=False)
 
 
 if __name__ == "__main__":
@@ -35,7 +37,7 @@ if __name__ == "__main__":
         logger.handlers = []
 
     alice_program = AliceProgram2D(args.angle1, args.num_epr)
-    bob_program = BobProgram2D(args.angle2, args.num_epr)
+    bob_program = BobProgram2D(args.angle2, args.num_epr, args.finite_estimation)
 
     alice_results, bob_results = run(config=cfg, programs={"Alice": alice_program, "Bob": bob_program}, num_times=1)
 
