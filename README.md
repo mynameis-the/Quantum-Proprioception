@@ -2,7 +2,7 @@
 
 Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three-dimensional space.
 
-<i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers to the sense we have of the orientation of our body parts (also known as kinaesthesia).</i>
+<i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers comes from the sense we have of the orientation of our body parts (also known as kinaesthesia).</i>
 
 ## The Big Idea
 
