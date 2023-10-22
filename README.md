@@ -148,6 +148,7 @@ This program uses SquidASM. To install SquidASM, refer to their [github page](ht
 
 The required arguments for the CLI are the angles. Due to way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is:
 $$\frac{n\pi}{2^d}$$
+The command is:
 ```
 QP n1 d1 n2 d2
 ```
