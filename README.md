@@ -133,6 +133,24 @@ The results page of the editor displays the output of the simulation, which shou
 4. Bob calculates the correlations between these two sequences, given by $q_{N=}\frac{1}{N}\sum{a_{i}\overline{b_i}}$, which can be rewritten as $q_{N}=\frac{N_{+-}+N_{-+}-N_{++}-N_{--}}{N}=\frac{N_{d}-N_{s}}{N}=\frac{2N_{d}-N}{N}=2\cdot\frac{N_{d}}{N}-1$, where $N_{ab}$ denotes the number of the times that Alice obtains a value of $a$ and Bob obtains a value of $b$, and $N_{d}$ and $N_{s}$ are the number of times that Alice and Bob obtain different and the same results respectively.  
 5. As $N$ approaches infinity, $q_{\infty}=\cos\left(\theta\right)$.
 
+# Execution
+
+## Requirements
+
+This program uses SquidASM. To install SquidASM, refer to their [github page](https://github.com/QuTech-Delft/squidasm).
+
+## How to Run
+
+To see the options for the CLI, run:
+```
+QP -h
+```
+To modify additional setup configurations, edit QP.py or the yaml files. To change the logic, modify application.py.
+
+Note: Due to way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is $\frac{n\pi}{2^d}$.
+
+(This is because qubits are rotated through iteratively applying reflection and rotation operators)
+
 # References
 1. [Rezazadeh, F., Mani, A. &amp; Karimipour, V. Secure alignment of coordinate systems using quantum
 correlation. Phys. Rev. A 96, 022310 (2017).](https://doi.org/10.48550/arXiv.1704.00833)
