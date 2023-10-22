@@ -1,6 +1,7 @@
 from typing import List
 from enum import Enum, auto
-from math import acos
+from math import acos, pi
+from dataclasses import dataclass
 
 from netqasm.sdk.classical_communication.socket import Socket
 from netqasm.sdk.connection import BaseNetQASMConnection
@@ -10,6 +11,19 @@ from squidasm.sim.stack.common import LogManager
 from squidasm.sim.stack.program import Program, ProgramContext, ProgramMeta
 
 
+@dataclass
+class NDAngle:
+    n: int
+    d: int
+
+    @property
+    def radians(self):
+        return self.n*pi/2**self.d
+
+    @property
+    def degrees(self):
+        return self.radians*180/pi
+
 class Messages(Enum):
     STATE_CREATED = auto()
 
@@ -17,7 +31,7 @@ class Messages(Enum):
 class AliceProgram2D(Program):
     PEER_NAME = "Bob"
 
-    def __init__(self, angle: float, n_epr_pairs: int):
+    def __init__(self, angle: NDAngle, n_epr_pairs: int):
         self.angle = angle
         self.n_epr_pairs = n_epr_pairs
 
@@ -42,6 +56,8 @@ class AliceProgram2D(Program):
             # turn |00> + |11> into |01> - |10>
             q.Z()
             q.X()
+            # simulate angle
+            q.rot_X(self.angle.n, self.angle.d)
             # wait for confirmation
             csocket.send(Messages.STATE_CREATED)
             message = yield from csocket.recv()
@@ -58,8 +74,8 @@ class AliceProgram2D(Program):
 class BobProgram2D(Program):
     PEER_NAME = "Alice"
 
-    def __init__(self, direction: float, n_epr_pairs: int, finite_estimation: bool = False):
-        self.direction = direction
+    def __init__(self, angle: NDAngle, n_epr_pairs: int, finite_estimation: bool = False):
+        self.angle = angle
         self.n_epr_pairs = n_epr_pairs
         self.finite_estimation = finite_estimation
 
@@ -87,7 +103,7 @@ class BobProgram2D(Program):
             q.Z()
             q.X()
             # simulate angle
-            q.rot_X()
+            q.rot_X(self.angle.n, self.angle.d)
             # wait for confirmation
             csocket.send(Messages.STATE_CREATED)
             message = yield from csocket.recv()
@@ -104,13 +120,12 @@ class BobProgram2D(Program):
 
         N = self.n_epr_pairs
 
-        print(a,b)
         # eq (4)
         Nd = 0
         for i in range(N):
             if b[i] != a[i]:
                 Nd += 1
-        qN = 2 * Nd / N - 1
+        qN = 1 - 2 * Nd / N
         if self.finite_estimation:
             # eq (21)
             theta = acos(N/(N+2)*qN)
