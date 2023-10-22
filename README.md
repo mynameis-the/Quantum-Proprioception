@@ -1,6 +1,6 @@
 # Quantum Proprioception
 
-Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three-dimensional space
+Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three-dimensional space.
 
 <i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers to the sense we have of the orientation of our body parts.</i>
 
