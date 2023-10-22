@@ -1,14 +1,12 @@
 # Quantum Proprioception
 
-Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three- dimensional space
+Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three-dimensional space
 
-<i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers to the sense we have of the orientation of our bodies or body parts.</i>
+<i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers to the sense we have of the orientation of our body parts.</i>
 
 ## The Big Idea
 
-Quantum Proprioception allows two observers to determine their relative orientation in three-dimensional space. It has important functions in a quantum internet, such as the remote alignment
-of measuring apparatus, and enables potentially transformative applications in industry and for
-broader society.
+Quantum Proprioception allows two observers to determine their relative orientation in three-dimensional space. It has important functions in a quantum internet, such as the remote alignment of measuring apparatus, and enables potentially transformative applications in industry and for broader society.
 
 The Quantum Proprioception protocol is based on the approach proposed by Rezazadeh et al in 2017. It is similar to the well-established technique of Quantum Key Distribution. In QKD, Alice and
 Bob announce their reference systems (their qubit bases) but keep secret the results of
@@ -18,18 +16,18 @@ those that do not match, they can share a private key.
 In Quantum Proprioception, the reference systems are secret but the results of the measurements
 are shared. Using this, Bob can determine his orientation relative to Alice with arbitrary accuracy. A
 useful by-product of this process is that each party’s reference frame remains private, with only the
-difference between them shared publicly.
+difference between them being shared publicly.
 
 In more detail, imagine that Alice and Bob are both able to measure photons in orthogonal bases but
 with equipment that is not aligned. Alice wishes to transmit her reference frame to Bob so that he
 can align his measurement bases with hers.
-They create and share a set of n EPR pairs and perform a measurement on each photon. They then
+They create and share a set of $N$ EPR pairs and perform a measurement on each photon. They then
 share their results over a classical channel and compare their measurements.
 
-Rezazadeh et al show that the results are correlated in a way that depends on the relative
+Rezazadeh et al<sup>[1](#References)</sup> show that the results are correlated in a way that depends on the relative
 orientations of the measurement bases. By comparing the number of measurement outcomes in
 each base, Alice and Bob can determine the difference in the alignment of one axis with an accuracy
-that increases with $\frac{n}{n+2}$, and by repeating this process for each axis, Alice and Bob can determine their relative orientation in three dimensions.
+that increases with $\frac{N}{N+2}$, and by repeating this process for each axis, Alice and Bob can determine their relative orientation in three dimensions.
 
 ## Comparison with Classical Orientation Techniques
 
@@ -40,13 +38,12 @@ orientation of local objects can be compared using standard surveying techniques
 For example, the construction of the Laser Interferometer Gravitational Wave Observatory, LIGO, at
 two locations in the United States required the alignment of local coordinate systems to within
 0.005 metres RMS while separated by a distance of 3001.8 km<sup>2</sup>.
-This was a complex process
-requiring numerous detailed measurements and calibrations. The orientation of each interferometer arm was defined by the establishment of a reference monument at each end. The position of these reference monuments had to be determined with differential GPS to with an accuracy of 2mm relative to the (then) standard geodetic ellipsoid, WGS-84. The accuracy of the arm orientation was then determined by the accuracy of these two position
+This was a complex process requiring numerous detailed measurements and calibrations. The orientation of each interferometer arm was defined by the establishment of a reference monument at each end. The position of these reference monuments had to be determined with differential GPS to with an accuracy of 2mm relative to the (then) standard geodetic ellipsoid, [WGS-84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84). The accuracy of the arm orientation was then determined by the accuracy of these two position
 measurements.
 (Interferometer arms are extended cylinders that are symmetrical along their length. That’s why
 their orientation can be determined with two reference monuments. In general, a non-symmetrical
 three-dimensional object requires three classical reference measurements to determine its
-orientation.)
+orientation).
 
 By contrast, Quantum Proprioception gives the orientation at each location. This reduces the
 number of required reference monuments or improves accuracy and redundancy, compared to
@@ -57,7 +54,7 @@ Quantum Proprioception also acts non-locally and securely in a way that has no c
 
 The misalignment of quantum measuring apparatus is an important source of error in many
 quantum applications. These errors reduce fidelity and open potential security holes. Various
-security protocols exist to account for these errors, at least in theory 3. However, a simple way to
+security protocols exist to account for these errors, at least in theory<sup>[3](#References)</sup>. However, a simple way to
 measure and reduce misalignment would mitigate the problem.
 
 Quantum Proprioception performs this task. If adopted as a standard handshake protocol, it would
@@ -67,11 +64,11 @@ essentially establishes a standard orientation for the quantum internet.
 ## Standard Orientation
 
 What should the quantum internet be oriented relative to? One candidate reference system is the
-International Terrestrial Reference Frame (ITRF) 4 maintained by the International Earth Rotation and
-Reference System Service 5. The ITRF is a geoid of approximately Earth size, that co-rotates with the
+International Terrestrial Reference Frame (ITRF)<sup>[4](#References)</sup> maintained by the International Earth Rotation and
+Reference System Service <sup>[5](#References)</sup>. The ITRF is a geoid of approximately Earth size, that co-rotates with the
 Earth around an origin at the planet’s centre of mass. The latest incarnation is known as ITRF2020
 and this, or earlier versions of it like WGS-84, are used to calibrate the GPS, Galileo and BeiDou
-satellite navigation systems(The Russian GLONASS system uses a separate reference frame).
+satellite navigation systems (The Russian GLONASS system uses a separate reference frame<sup>[6](#References)</sup>).
 If Alice were to align her apparatus with ITRF2020 at a specific location, then all consequent
 Quantum Proprioception handshakes with Alice would be relative to this standard.
 
@@ -85,16 +82,14 @@ But satellite navigation systems provide only point location data while real obj
 entities. A full description of their status in three-dimensional space must specify their orientation as
 well as their position. Quantum Proprioception provides this extra data.
 Assuming the widespread future availability of a quantum internet and that the capabilities of a
-standard quantum optics bench can be shrunk to chip-size, the combination of position-plus-
-orientation data opens up a host of applications.
+standard quantum optics bench can be shrunk to chip-size, the combination of position-plus-orientation data opens up a host of applications.
 
 Construction generally assembles three-dimensional components into a larger structure. Location
 data for each component is certainly useful but does not allow construction by itself. By contrast,
 position-plus-orientation data for each component enables accurate automated construction, at
 scales ranging from bridges and skyscrapers to flat pack furniture and Lego blocks.
-A Quantum Internet of Things with a Quantum Proprioception handshake could offer position-plus- orientation data for almost any object. This increases precision and coordination
-between machines. It has implications for supply chain management, for automated manufacture,
-for self-driving vehicles, air traffic control, robotics and more.
+A Quantum Internet of Things with a Quantum Proprioception handshake could offer position-plus-orientation data for almost any object. This increases precision and coordination
+between machines. It has implications for supply chain management, automated manufacture, self-driving vehicles, air traffic control, robotics and more.
 
 Quantum Proprioception could also create local reference frames in otherwise closed or isolated
 systems, such as submarines and spacecraft. Defence applications include the secure transmission of
@@ -114,22 +109,22 @@ share their results over a classical channel and compare their measurements.
 The results must be correlated in a way that depends on the relative orientations of the
 measurement bases. By comparing the number of measurement outcomes in each base, Alice and
 Bob can determine the difference in the alignment of one axis with an accuracy that increases with
-$\frac{n}{n+2}$. By repeating this process for each axis, Alice and Bob can determine their relative
+$\frac{N}{N+2}$. By repeating this process for each axis, Alice and Bob can determine their relative
 orientation in three dimensions.
 
 ## Inputs
 
-The accuracy of Quantum Proprioception depends on the number n of EPR pairs that Alice and Bob
-share. In the editor, you can choose this number. With n = 2, the theoretical fidelity is about 0.86
-and with n = 10 it is about 0.96 CHK.
+The accuracy of Quantum Proprioception depends on the number $N$ of EPR pairs that Alice and Bob
+share. In the editor, you can choose this number. With $N=2$, the theoretical fidelity is about $0.86$
+and with $N=10$ it is about $0.96$<sup>[1](#References)</sup>.
 In the real world, the angle between Alice and Bob’s apparatus is unknown. That’s what the protocol
-determines. But in the simulation, you must enter this angle (see How to run) .
-Results
-The results page of the editor displays the output of the simulation, which should be the angle you
-entered above. In the real world, however, Bob would use this angle to align his apparatus with
-Alice’s.
+determines. But in the simulation, you must enter this angle (see How to run).
 
-## Using entangled states  to estimate the angle between two directions
+## Results
+
+The results page of the editor displays the output of the simulation, which should be an approximation the real angle. In the real world, Bob would use this angle to align his apparatus with Alice’s.
+
+## Algorithm Summary
 
 1. Alice and Bob measure their spins in two arbitrary directions only known to each of them separately.
 2. Alice, publicly announces her measurements in the form of a sequence (a<sub>1</sub>, a<sub>2</sub>, · · · a<sub>k</sub>, · · ·), where a<sub>i</sub> = ±1.
