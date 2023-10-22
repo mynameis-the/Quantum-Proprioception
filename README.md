@@ -130,8 +130,13 @@ The results page of the editor displays the output of the simulation, which shou
 1. Alice and Bob measure their spins in two arbitrary directions only known to each of them separately.
 2. Alice, publicly announces her measurements in the form of a sequence (a<sub>1</sub>, a<sub>2</sub>, · · · a<sub>k</sub>, · · ·), where a<sub>i</sub> = ±1.
 3. Bob compares these measurements with his own: (b<sub>1</sub>, b<sub>2</sub>, · · · b<sub>k</sub>, · · ·), where b<sub>i</sub> = ±1.
-4. Bob calculates the correlations between these two sequences, given by $q_{N=}\frac{1}{N}\sum{a_{i}\overline{b_i}}$, which can be rewritten as $q_{N}=\frac{N_{+-}+N_{-+}-N_{++}-N_{--}}{N}=\frac{N_{d}-N_{s}}{N}=\frac{2N_{d}-N}{N}=2\cdot\frac{N_{d}}{N}-1$, where $N_{ab}$ denotes the number of the times that Alice obtains a value of $a$ and Bob obtains a value of $b$, and $N_{d}$ and $N_{s}$ are the number of times that Alice and Bob obtain different and the same results respectively.  
-5. As $N$ approaches infinity, $q_{\infty}=\cos\left(\theta\right)$.
+4. Bob calculates the correlations between these two sequences, given by
+$$q_{N=}\frac{1}{N}\sum_{i=1}^{N}{a_{i}\overline{b_i}}$$
+which can be rewritten as
+$$q_{N}=\frac{N_{+-}+N_{-+}-N_{++}-N_{--}}{N}=\frac{N_{d}-N_{s}}{N}=\frac{2N_{d}-N}{N}=2\cdot\frac{N_{d}}{N}-1$$
+where $N_{ab}$ denotes the number of the times that Alice obtains a value of $a$ and Bob obtains a value of $b$, and $N_{d}$ and $N_{s}$ are the number of times that Alice and Bob obtain different and the same results respectively.  
+6. As $N$ approaches infinity:
+$$q_{\infty}=\cos\left(\theta\right)$$
 
 # Execution
 
@@ -141,6 +146,18 @@ This program uses SquidASM. To install SquidASM, refer to their [github page](ht
 
 ## How to Run
 
+The required arguments for the CLI are the angles. Due to way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is:
+$$\frac{n\pi}{2^d}$$
+```
+QP n1 d1 n2 d2
+```
+e.g. if Alice's angle was $\pi$ radians ($180\degree$) and Bob's angle was $\frac{\pi}{2}$ radians ($90\degree$):
+$$\pi=\frac{1\cdot\pi}{2^0}:=\left(1,0\right)$$
+$$\frac{\pi}{2}=\frac{1\cdot\pi}{2^1}:=\left(1,1\right)$$
+So the command would be:
+```
+QP 1 0 1 1
+```
 To see the options for the CLI, run:
 ```
 QP -h
@@ -155,15 +172,12 @@ The options are as follows:
 
 -n, --noise, default=False : run the simulation with generic_qdevice noise
 
--f, --finite-estimation, default=False : assume a finite $N$ number of qubits during calculations ($\cos(\theta)=\frac{N}{N+2}q_{N}$ instead of $\cos(\theta)=q_{N}$)
+-f, --finite-estimation, default=False : uses the derived formula for a finite $N$ number of qubits during calculations:
+$$\cos(\theta)=\frac{N}{N+2}q_{N}$$
+instead of
+$$\cos(\theta)=q_{N}$$
 
 To modify additional setup configurations, edit QP.py or the yaml files. To change the logic, modify application.py.
-
-Note: Due to way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is $\frac{n\pi}{2^d}$.
-
-(This is because qubits are rotated through iteratively applying reflection and rotation operators)
-
-The default angles are $0$ and $\pi$ radians ($0\degree$ and $180\degree$)
 
 # References
 1. [Rezazadeh, F., Mani, A. &amp; Karimipour, V. Secure alignment of coordinate systems using quantum
