@@ -119,7 +119,7 @@ The accuracy of Quantum Proprioception depends on the number $N$ of EPR pairs th
 share. In an editor, you can choose this number. With $N=2$, the theoretical fidelity is about $0.86$
 and with $N=10$ it is about $0.96$<sup>[1](#References)</sup>.
 In the real world, the angle between Alice and Bob’s apparatus is unknown (because it is what the protocol
-determines). In this simulation, you must specify these angles (see [How to Run](#How-to-Run)).
+determines), but in this simulation, you must specify the angles (see [How to Run](#How-to-Run)).
 
 ## Results
 
