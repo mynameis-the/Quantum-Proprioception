@@ -146,7 +146,7 @@ This program uses SquidASM (which can only run on Linux or macOS). To install Sq
 
 ## How to Run
 
-The required arguments for the CLI are the angles. Due to way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is:
+The required arguments for the CLI are the angles. Due to the way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is:
 $$\frac{n\pi}{2^d}$$
 The command is:
 ```
