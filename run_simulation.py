@@ -5,7 +5,7 @@ from squidasm.run.stack.run import run
 from squidasm.sim.stack.common import LogManager
 
 
-cfg = StackNetworkConfig.from_file("config.yaml")
+cfg = StackNetworkConfig.from_file("perfect.yaml")
 
 # Set log level
 LogManager.set_log_level("INFO")

@@ -11,7 +11,7 @@ from squidasm.sim.stack.program import Program, ProgramContext, ProgramMeta
 
 
 class Messages(Enum):
-    ALL_INITIALISED = auto()
+    STATE_CREATED = auto()
 
 
 class AliceProgram2D(Program):
@@ -37,26 +37,22 @@ class AliceProgram2D(Program):
 
         logger = LogManager.get_stack_logger("AliceProgram")
 
-        # Generate epr pairs
-        epr_qubits = epr_socket.create_keep(number=self.n_epr_pairs)
-
-        # turn |00> + |11> into |01> - |10>
-        for q in epr_qubits:
+        a = []
+        for i in range(self.n_epr_pairs):
+            q = epr_socket.create_keep(1)[0]
+            # turn |00> + |11> into |01> - |10>
             q.Z()
             q.X()
+            # wait for confirmation
+            csocket.send(Messages.STATE_CREATED)
+            message = yield from csocket.recv()
+            assert message == Messages.STATE_CREATED
+            # measure
+            a.append(q.measure())
+            yield from connection.flush()
 
-        # wait for qubits to be initialised in the required state
-        csocket.send(Messages.ALL_INITIALISED)
-        message = yield from csocket.recv()
-        assert message == Messages.ALL_INITIALISED
-
-        # measure epr qubits
-        a = [q.measure() for q in epr_qubits]
-
-        yield from connection.flush()
         logger.info(f"Measured qubits: {a}")
 
-        # send the measurements to bob
         csocket.send(a)
         logger.info(f"Sent measurements: {a}")
 
@@ -87,25 +83,25 @@ class BobProgram2D(Program):
 
         logger = LogManager.get_stack_logger("BobProgram")
 
-        # Generate epr pairs
-        epr_qubits = epr_socket.create_keep(number=self.n_epr_pairs)
-
-        # turn |00> + |11> into |01> - |10>
-        for q in epr_qubits:
+        b = []
+        for i in range(self.n_epr_pairs):
+            q = epr_socket.recv_keep(1)[0]
+            # turn |00> + |11> into |01> - |10>
             q.Z()
             q.X()
+            # wait for confirmation
+            csocket.send(Messages.STATE_CREATED)
+            message = yield from csocket.recv()
+            assert message == Messages.STATE_CREATED
+            # measure
+            b.append(q.measure())
+            yield from connection.flush()
 
-        # wait for qubits to be initialised in the required state
-        csocket.send(Messages.ALL_INITIALISED)
-        message = yield from csocket.recv()
-        assert message == Messages.ALL_INITIALISED
-
-        # measure epr qubits
-        b = [q.measure() for q in epr_qubits]
+        logger.info(f"Measured qubits: {b}")
 
         # receive measurements from alice
         a = yield from csocket.recv()
-        logger.info(f"Bob receives measurements: {a}")
+        logger.info(f"Received measurements: {a}")
 
         N = self.n_epr_pairs
 
@@ -119,7 +115,7 @@ class BobProgram2D(Program):
         # eq (21)
         theta = acos(N/(N+2)*qN)
 
-        logger.info(f"Bob Calculates difference in angles: {theta=}")
+        logger.info(f"Calculated difference in angles: {theta=}")
 
         logger.info("Finished")
         return {"theta": theta}
