@@ -145,11 +145,25 @@ To see the options for the CLI, run:
 ```
 QP -h
 ```
+The options are as follows:
+
+-N, --num_epr, default=100 : number of epr pairs to use ($N$ in the algorithm description)
+
+-l, --logfile, default=info.log : path for the log file
+
+-v, --verbose, default=False : verbose output
+
+-n, --noise, default=False : run the simulation with generic_qdevice noise
+
+-f, --finite-estimation, default=False : assume a finite $N$ number of qubits during calculations ($\cos(\theta)=\frac{N}{N+2}q_{N}$ instead of $\cos(\theta)=q_{N}$)
+
 To modify additional setup configurations, edit QP.py or the yaml files. To change the logic, modify application.py.
 
 Note: Due to way that SquidASM rotates the bases of its Qubits, the angle format used in this implementation is $\frac{n\pi}{2^d}$.
 
 (This is because qubits are rotated through iteratively applying reflection and rotation operators)
+
+The default angles are $0$ and $\pi$ radians ($0\degree$ and $180\degree$)
 
 # References
 1. [Rezazadeh, F., Mani, A. &amp; Karimipour, V. Secure alignment of coordinate systems using quantum
