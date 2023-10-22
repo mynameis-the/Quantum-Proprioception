@@ -1,10 +1,10 @@
-#Quantum Proprioception
+# Quantum Proprioception
 
 Quantum Proprioception is a protocol that allows two parties to securely determine their relative orientation in three- dimensional space
 
 <i>Note: The word "[proprioception](https://en.wikipedia.org/wiki/Proprioception)" refers to the sense we have of the orientation of our bodies or body parts.</i>
 
-##The Big Idea
+## The Big Idea
 
 Quantum Proprioception allows two observers to determine their relative orientation in three-dimensional space. It has important functions in a quantum internet, such as the remote alignment
 of measuring apparatus, and enables potentially transformative applications in industry and for
@@ -31,7 +31,7 @@ orientations of the measurement bases. By comparing the number of measurement ou
 each base, Alice and Bob can determine the difference in the alignment of one axis with an accuracy
 that increases with $\frac{n}{n+2}$, and by repeating this process for each axis, Alice and Bob can determine their relative orientation in three dimensions.
 
-##Comparison with Classical Orientation Techniques
+## Comparison with Classical Orientation Techniques
 
 Quantum Proprioception is a significant improvement over classical orientation techniques. These
 generally require carefully calibrated “reference monuments” against which the position and
@@ -53,7 +53,7 @@ number of required reference monuments or improves accuracy and redundancy, comp
 classical orientation sensing.
 Quantum Proprioception also acts non-locally and securely in a way that has no classical analogue.
 
-#Quantum Internet Applications
+# Quantum Internet Applications
 
 The misalignment of quantum measuring apparatus is an important source of error in many
 quantum applications. These errors reduce fidelity and open potential security holes. Various
@@ -64,7 +64,7 @@ Quantum Proprioception performs this task. If adopted as a standard handshake pr
 automatically determine the relative orientations of all devices on a quantum network. This
 essentially establishes a standard orientation for the quantum internet.
 
-##Standard Orientation
+## Standard Orientation
 
 What should the quantum internet be oriented relative to? One candidate reference system is the
 International Terrestrial Reference Frame (ITRF) 4 maintained by the International Earth Rotation and
@@ -75,7 +75,7 @@ satellite navigation systems(The Russian GLONASS system uses a separate referenc
 If Alice were to align her apparatus with ITRF2020 at a specific location, then all consequent
 Quantum Proprioception handshakes with Alice would be relative to this standard.
 
-##Applications in Broader Society
+## Applications in Broader Society
 
 Satellite navigation systems have transformed society. The ability to determine a location to within a
 few metres or better, almost anywhere on the planet, underpins so many elements of modern life
@@ -102,7 +102,7 @@ targeting information—the ability to send not just the position of a target bu
 For these reasons, Quantum Proprioception is a foundational quantum technology that has the
 potential to transform the way we exploit three-dimensional space.
 
-#Description
+# Description
 
 Quantum Proprioception allows two parties to determine their relative orientation in three-
 dimensional space. Imagine that Alice and Bob can measure photons in orthogonal bases but with
@@ -117,7 +117,7 @@ Bob can determine the difference in the alignment of one axis with an accuracy t
 $\frac{n}{n+2}$. By repeating this process for each axis, Alice and Bob can determine their relative
 orientation in three dimensions.
 
-##Inputs
+## Inputs
 
 The accuracy of Quantum Proprioception depends on the number n of EPR pairs that Alice and Bob
 share. In the editor, you can choose this number. With n = 2, the theoretical fidelity is about 0.86
@@ -127,9 +127,9 @@ determines. But in the simulation, you must enter this angle (see How to run) .
 Results
 The results page of the editor displays the output of the simulation, which should be the angle you
 entered above. In the real world, however, Bob would use this angle to align his apparatus with
-Alice’s..
+Alice’s.
 
-##Using entangled states  to estimate the angle between two directions
+## Using entangled states  to estimate the angle between two directions
 
 1. Alice and Bob measure their spins in two arbitrary directions only known to each of them separately.
 2. Alice, publicly announces her measurements in the form of a sequence (a<sub>1</sub>, a<sub>2</sub>, · · · a<sub>k</sub>, · · ·), where a<sub>i</sub> = ±1.
@@ -137,7 +137,7 @@ Alice’s..
 4. Bob calculates the correlations between these two sequences, given by $q_{N=}\frac{1}{N}\sum{a_{i}\overline{b_i}}$, which can be rewritten as $q_{N}=\frac{N_{+-}+N_{-+}-N_{++}-N_{--}}{N}=\frac{N_{d}-N_{s}}{N}=\frac{2N_{d}-N}{N}=2\cdot\frac{N_{d}}{N}-1$, where $N_{ab}$ denotes the number of the times that Alice obtains a value of $a$ and Bob obtains a value of $b$, and $N_{d}$ and $N_{s}$ are the number of times that Alice and Bob obtain different and the same results respectively.  
 5. As $N$ approaches infinity, $q_{\infty}=\cos\left(\theta\right)$.
 
-References
+# References
 1. [Rezazadeh, F., Mani, A. &amp; Karimipour, V. Secure alignment of coordinate systems using quantum
 correlation. Phys. Rev. A 96, 022310 (2017).](https://doi.org/10.48550/arXiv.1704.00833)
 2. [Althouse, W. E., Hand, S. D., Jones, L. K., Lazzarini, A. &amp; Weiss, R. Precision alignment of the LIGO
