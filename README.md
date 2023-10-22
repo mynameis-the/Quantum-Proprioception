@@ -142,7 +142,7 @@ $$q_{\infty}=\cos\left(\theta\right)$$
 
 ## Requirements
 
-This program uses SquidASM. To install SquidASM, refer to their [github page](https://github.com/QuTech-Delft/squidasm).
+This program uses SquidASM (which can only run on Linux or macOS). To install SquidASM, refer to their [github page](https://github.com/QuTech-Delft/squidasm).
 
 ## How to Run
 
