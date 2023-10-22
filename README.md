@@ -43,7 +43,7 @@ measurements.
 (Interferometer arms are extended cylinders that are symmetrical along their length. That’s why
 their orientation can be determined with two reference monuments. In general, a non-symmetrical
 three-dimensional object requires three classical reference measurements to determine its
-orientation).
+orientation).<sup>[2](#References)</sup>
 
 By contrast, Quantum Proprioception gives the orientation at each location. This reduces the
 number of required reference monuments or improves accuracy and redundancy, compared to
