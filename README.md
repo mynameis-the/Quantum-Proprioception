@@ -116,10 +116,10 @@ orientation in three dimensions.
 ## Inputs
 
 The accuracy of Quantum Proprioception depends on the number $N$ of EPR pairs that Alice and Bob
-share. In the editor, you can choose this number. With $N=2$, the theoretical fidelity is about $0.86$
+share. In an editor, you can choose this number. With $N=2$, the theoretical fidelity is about $0.86$
 and with $N=10$ it is about $0.96$<sup>[1](#References)</sup>.
-In the real world, the angle between Alice and Bob’s apparatus is unknown. That’s what the protocol
-determines. But in the simulation, you must enter this angle (see How to run).
+In the real world, the angle between Alice and Bob’s apparatus is unknown (because it is what the protocol
+determines). In this simulation, you must specify these angles (see [How to Run](#How-to-Run)).
 
 ## Results
 
