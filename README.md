@@ -8,7 +8,7 @@ Quantum Proprioception is a protocol that allows two parties to securely determi
 
 Quantum Proprioception allows two observers to determine their relative orientation in three-dimensional space. It has important functions in a quantum internet, such as the remote alignment of measuring apparatus, and enables potentially transformative applications in industry and for broader society.
 
-The Quantum Proprioception protocol is based on the approach proposed by Rezazadeh et al in 2017. It is similar to the well-established technique of Quantum Key Distribution. In QKD, Alice and
+The Quantum Proprioception protocol is based on the approach proposed by Rezazadeh et al<sup>[1](#References)</sup> in 2017. It is similar to the well-established technique of Quantum Key Distribution. In QKD, Alice and
 Bob announce their reference systems (their qubit bases) but keep secret the results of
 measurements they make on EPR pairs that they share. By comparing their results and discarding
 those that do not match, they can share a private key.
@@ -24,7 +24,7 @@ can align his measurement bases with hers.
 They create and share a set of $N$ EPR pairs and perform a measurement on each photon. They then
 share their results over a classical channel and compare their measurements.
 
-Rezazadeh et al<sup>[1](#References)</sup> show that the results are correlated in a way that depends on the relative
+Rezazadeh et al show that the results are correlated in a way that depends on the relative
 orientations of the measurement bases. By comparing the number of measurement outcomes in
 each base, Alice and Bob can determine the difference in the alignment of one axis with an accuracy
 that increases with $\frac{N}{N+2}$, and by repeating this process for each axis, Alice and Bob can determine their relative orientation in three dimensions.
@@ -35,15 +35,15 @@ Quantum Proprioception is a significant improvement over classical orientation t
 generally require carefully calibrated “reference monuments” against which the position and
 orientation of local objects can be compared using standard surveying techniques.
 
-For example, the construction of the Laser Interferometer Gravitational Wave Observatory, LIGO, at
+For example, the construction of the Laser Interferometer Gravitational Wave Observatory, LIGO<sup>[2](#References)</sup>, at
 two locations in the United States required the alignment of local coordinate systems to within
-0.005 metres RMS while separated by a distance of 3001.8 km<sup>2</sup>.
+0.005 metres RMS while separated by a distance of 3001.8 km.
 This was a complex process requiring numerous detailed measurements and calibrations. The orientation of each interferometer arm was defined by the establishment of a reference monument at each end. The position of these reference monuments had to be determined with differential GPS to with an accuracy of 2mm relative to the (then) standard geodetic ellipsoid, [WGS-84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84). The accuracy of the arm orientation was then determined by the accuracy of these two position
 measurements.
 (Interferometer arms are extended cylinders that are symmetrical along their length. That’s why
 their orientation can be determined with two reference monuments. In general, a non-symmetrical
 three-dimensional object requires three classical reference measurements to determine its
-orientation).<sup>[2](#References)</sup>
+orientation).
 
 By contrast, Quantum Proprioception gives the orientation at each location. This reduces the
 number of required reference monuments or improves accuracy and redundancy, compared to
@@ -78,6 +78,7 @@ Satellite navigation systems have transformed society. The ability to determine 
 few metres or better, almost anywhere on the planet, underpins so many elements of modern life
 that is hard to provide a comprehensive list. Industries from aerospace to banking and finance to
 tourism, agriculture and healthcare all depend on satellite navigation in countless ways.
+
 But satellite navigation systems provide only point location data while real objects are extended
 entities. A full description of their status in three-dimensional space must specify their orientation as
 well as their position. Quantum Proprioception provides this extra data.
