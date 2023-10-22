@@ -12,6 +12,10 @@ parser = argparse.ArgumentParser(
                     prog='Quantum Proprioception',
                     description='Runs the quantum proprioception example in a squidasm simulation')
 
+parser.add_argument('n1')
+parser.add_argument('d1')
+parser.add_argument('n2')
+parser.add_argument('d2')
 parser.add_argument('-N', '--num_epr', default=100)
 parser.add_argument('-l', '--logfile', default='info.log')
 parser.add_argument('-v', '--verbose',
@@ -37,8 +41,8 @@ if __name__ == "__main__":
         logger = LogManager.get_stack_logger()
         logger.handlers = []
 
-    angle1 = NDAngle(0, 0)
-    angle2 = NDAngle(1, 0)
+    angle1 = NDAngle(args.n1, args.d1)
+    angle2 = NDAngle(args.n2, args.d2)
 
     alice_program = AliceProgram2D(angle1, args.num_epr)
     bob_program = BobProgram2D(angle2, args.num_epr, args.finite_estimation)
