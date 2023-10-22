@@ -12,10 +12,10 @@ parser = argparse.ArgumentParser(
                     prog='Quantum Proprioception',
                     description='Runs the quantum proprioception example in a squidasm simulation')
 
-parser.add_argument('n1')
-parser.add_argument('d1')
-parser.add_argument('n2')
-parser.add_argument('d2')
+parser.add_argument('n1', type=int)
+parser.add_argument('d1', type=int)
+parser.add_argument('n2', type=int)
+parser.add_argument('d2', type=int)
 parser.add_argument('-N', '--num_epr', default=100)
 parser.add_argument('-l', '--logfile', default='info.log')
 parser.add_argument('-v', '--verbose',
